@@ -1,3 +1,8 @@
+:root
+{
+    --main-colour: rgb(243, 243, 243);
+}
+
 *,
 *::before,
 *::after {
@@ -7,10 +12,17 @@
 * {
     font-family: "Roboto", sans-serif;
     margin: 0;
+    color: white;
 }
 
 body {
     -webkit-font-smoothing: antialiased;
+    background: #ff9966;
+    background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 img,
@@ -52,3 +64,29 @@ h6 {
     text-wrap: balance;
 }
 
+h1{
+    font-size: 3rem;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title
+{
+    position: relative;
+    transform: translateY(15px);
+    color: var(--main-colour);
+}
+
+.calculator
+{
+    background-color: var(--main-colour);
+    height: 50%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.386);
+}
