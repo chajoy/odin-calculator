@@ -1,3 +1,50 @@
+const output_operation = document.querySelector(`#operation`);
+const output_result = document.querySelector(`#result`);
+let operation = [];
+
+// functionality for buttons
+document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event)=>
+{
+    if(event.target.classList.contains(`button`))
+    {
+        if(event.target.classList.contains(`number`))
+        {
+            operation.push(event.target.getAttribute(`value`));
+            output_operation.textContent += event.target.getAttribute(`value`);
+        }else
+        {
+            switch(event.target.getAttribute(`value`))
+            {
+                case `=`:
+                    clearDisplay();
+                    setDisplay(`result`, operation.join(``));
+                    break;
+                
+                case `AC`:
+                    clearDisplay();
+                    break;
+            }
+        }
+    }
+})
+
+const setDisplay = function (container, toDisplay = `null`)
+{
+    if(container === `operation`)
+    {
+        
+    }else if(container === `result`)
+    {
+        output_result.textContent = toDisplay;
+    }
+}
+
+const clearDisplay = function ()
+{
+    output_operation.textContent = ``;
+    output_result.textContent = ``;
+}
+
 const add = function (num_1, num_2) {
     return num_1 + num_2;
 }
