@@ -1,6 +1,10 @@
 :root
 {
-    --main-colour: rgb(243, 243, 243);
+    --main-colour: rgb(240, 242, 221);
+    --bg-colour: rgb(47, 68, 127);
+    --button-colour: rgb(246, 247, 237);
+    
+    --border-radius: 30px;
 }
 
 *,
@@ -10,16 +14,14 @@
 }
 
 * {
+    user-select: none;
     font-family: "Roboto", sans-serif;
     margin: 0;
-    color: white;
 }
 
 body {
     -webkit-font-smoothing: antialiased;
-    background: #ff9966;
-    background: -webkit-linear-gradient(to right, #ff5e62, #ff9966);
-    background: linear-gradient(to right, #ff5e62, #ff9966);
+    background-color: var(--bg-colour);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -78,7 +80,7 @@ h1{
 .title
 {
     position: relative;
-    transform: translateY(15px);
+    transform: translateY(15px) translateX(10px);
     color: var(--main-colour);
 }
 
@@ -87,6 +89,84 @@ h1{
     background-color: var(--main-colour);
     height: 50%;
     aspect-ratio: 1 / 1;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.386);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.output
+{
+    background-color: white;
+    flex: 1;
+    width: 100%;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 20px;
+    gap: 20px;
+    color: var(--bg-colour);
+}
+
+.operation
+{
+    font-size: 1.5rem;
+}
+
+.result
+{
+    font-size: 5rem;
+}
+
+.buttonsContainer
+{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    color: var(--bg-colour);
+    text-align: center;
+    flex: 2;
+    padding: 20px;
+    gap: 20px;
+}
+
+.buttonsContainer div:nth-child(19)
+{
+    grid-column: span 2;
+    background-color: rgb(219, 175, 94);
+    color: var(--main-colour);
+}
+
+.buttonsContainer .button:nth-child(1)
+{
+    background-color: var(--bg-colour);
+    color: var(--main-colour);
+}
+
+.button
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-colour);
+    border-radius: var(--border-radius);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.384);
+    font-size: 2rem;
+}
+
+.button:hover
+{
+    cursor: pointer;
+}
+
+.button:active
+{
+    box-shadow: none;
+    position: relative;
+    transform: translate(5px,5px);
 }
