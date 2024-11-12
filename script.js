@@ -1,5 +1,6 @@
 const output_operation = document.querySelector(`#operation`);
 const output_result = document.querySelector(`#result`);
+const operators = [`+`,`-`,`*`,`/`, `%`];
 let operation = [];
 
 // functionality for buttons
@@ -75,9 +76,16 @@ const multiply = function (num_1, num_2) {
     return num_1 * num_2;
 }
 
-const parseExpression = function()
+const parseExpression = function(expression)
 {
-
+    // converts numbers from strings to number type
+    for(let x = 0; x < expression.length; x++)
+    {
+        if(!operators.includes(expression[x]))
+        {
+            expression[x] = Number(expression[x])
+        }
+    }
 }
 
 const calculate = function (operator, num_1, num_2) {
