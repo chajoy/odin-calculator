@@ -12,7 +12,9 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event)=>
     {
         if(!event.target.classList.contains(`function`))
         {
-            operation.push(event.target.getAttribute(`value`));
+            let value = event.target.getAttribute(`value`);
+            value = +value || value;
+            operation.push(value);
             updateDisplay(`operation`, operation.join(``));
         }else
         {
@@ -78,14 +80,6 @@ const multiply = function (num_1, num_2) {
 
 const parseExpression = function(expression)
 {
-    // converts numbers from strings to number type
-    for(let x = 0; x < expression.length; x++)
-    {
-        if(!operators.includes(expression[x]))
-        {
-            expression[x] = Number(expression[x])
-        }
-    }
 }
 
 const calculate = function (operator, num_1, num_2) {
