@@ -12,14 +12,14 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event)=>
         if(!event.target.classList.contains(`function`))
         {
             operation.push(event.target.getAttribute(`value`));
-            setDisplay(`operation`, operation.join(``));
+            updateDisplay(`operation`, operation.join(``));
         }else
         {
             switch(event.target.getAttribute(`value`))
             {
                 case `=`:
                     clearDisplay();
-                    setDisplay(`result`, operation.join(``));
+                    updateDisplay(`result`, operation.join(``));
                     break;
                 
                 case `AC`:
@@ -30,9 +30,9 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event)=>
     }
 })
 
-const setDisplay = function (container, toDisplay = `null`)
+const updateDisplay = function (container, toDisplay = `null`)
 {
-    console.log(`setDisplay(${container}, ${toDisplay})`);
+    console.log(`updateDisplay(${container}, ${toDisplay})`);
     
     if(container === `operation`)
     {
@@ -75,7 +75,12 @@ const multiply = function (num_1, num_2) {
     return num_1 * num_2;
 }
 
-const operate = function (operator, num_1, num_2) {
+const parseExpression = function()
+{
+
+}
+
+const calculate = function (operator, num_1, num_2) {
     console.log(`operate(${operator}, ${num_1}, ${num_2})`);
 
     switch (operator) {
