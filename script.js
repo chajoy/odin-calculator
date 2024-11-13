@@ -16,7 +16,8 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
         } else {
             switch (event.target.getAttribute(`value`)) {
                 case `=`:
-                    operation = parseExpression(operation);
+                    clearDisplay();
+                    updateDisplay(`result`, parseExpression(operation));
                     break;
 
                 case `AC`:
@@ -74,6 +75,10 @@ const parseExpression = function (expression) {
     let operation_tmp = [``];
     let currentActiveVar = 0;
 
+    let num_1,
+        num_2,
+        operator;
+
     expression.forEach(element => {
         if (typeof element === `number`) {
             if (isNaN(operation_tmp[currentActiveVar])) {
@@ -88,11 +93,30 @@ const parseExpression = function (expression) {
         }
     })
 
-    return operation_tmp;
+    console.log(operation_tmp);
+
+    for(let x = 0; x < operation_tmp.length; x++)
+    {
+        if(typeof operation_tmp[x] === `number`)
+        {
+            if(num_1 != null)
+            {
+                num_2 = operation_tmp[x];
+            }else
+            {
+                num_1 = operation_tmp[x];
+            }
+        }else
+        {
+            operator = operation_tmp[x];
+        }
+    }
+
+    return calculate(operator, num_1, num_2);
 }
 
 const calculate = function (operator, num_1, num_2) {
-    console.log(`operate(${operator}, ${num_1}, ${num_2})`);
+    console.log(`calculate(${operator}, ${num_1}, ${num_2})`);
 
     switch (operator) {
         case `+`:
