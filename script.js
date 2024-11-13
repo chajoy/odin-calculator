@@ -10,6 +10,11 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
         if (!event.target.classList.contains(`function`)) {
             let value = event.target.getAttribute(`value`);
             value = value === `0` ? 0 : Number(value) || value;
+            if (isNaN(value)) {
+                if (isNaN(operation[operation.length - 1])) {
+                    operation.pop();
+                }
+            }
             operation.push(value);
             updateDisplay(`operation`, operation.join(``));
         } else {
@@ -17,7 +22,7 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                 case `=`:
                     clearDisplay();
                     operation = parseExpression(operation);
-                    updateDisplay(`result`, operate(operation).join(` `));
+                    updateDisplay(`result`, operate(operation));
                     break;
 
                 case `AC`:
@@ -65,7 +70,7 @@ const operate = function (operation) {
             operation.splice(operatorIndex - 1, 3, calculate(operator, num_1, num_2));
         }
     }
-    return operation;
+    return isNaN(operation) ? `Error: NaN` : operation.join(` `);
 }
 
 // concatenates separate numerals into single values
