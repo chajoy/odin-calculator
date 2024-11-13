@@ -17,19 +17,24 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                 case `=`:
                     clearDisplay();
                     operation = parseExpression(operation);
-                    updateDisplay(`result`, operate(operation));
+                    updateDisplay(`result`, operate(operation).join(` `));
                     break;
 
                 case `AC`:
                     operation = [];
-                    clearDisplay();
+                    clearDisplay(`all`);
                     break;
+
+                case `C`:
+                    operation = [];
+                    clearDisplay(`operation`);
+                    operation = [Number(output_result.textContent)];
             }
         }
     }
 })
 
-const updateDisplay = function (container, toDisplay = `null`) {
+const updateDisplay = function (container, toDisplay = null) {
 
     if (container === `operation`) {
         output_operation.textContent = toDisplay;
@@ -38,10 +43,16 @@ const updateDisplay = function (container, toDisplay = `null`) {
     }
 }
 
-const clearDisplay = function () {
+const clearDisplay = function (container = null) {
 
-    output_operation.textContent = ``;
-    output_result.textContent = ``;
+    if (container === `operation`) {
+        output_operation.textContent = ``;
+    } else if (container === `result`) {
+        output_result.textContent = ``;
+    } else if (container === `all`) {
+        output_operation.textContent = ``;
+        output_result.textContent = ``;
+    }
 }
 
 const operate = function (operation) {
