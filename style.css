@@ -1,9 +1,8 @@
-:root
-{
+:root {
     --main-colour: rgb(240, 242, 221);
     --bg-colour: rgb(47, 68, 127);
     --button-colour: rgb(246, 247, 237);
-    
+
     --border-radius: 30px;
 }
 
@@ -66,26 +65,23 @@ h6 {
     text-wrap: balance;
 }
 
-h1{
+h1 {
     font-size: 3rem;
 }
 
-.container
-{
+.container {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.title
-{
+.title {
     position: relative;
     transform: translateY(15px) translateX(10px);
     color: var(--main-colour);
 }
 
-.calculator
-{
+.calculator {
     background-color: var(--main-colour);
     height: 50%;
     aspect-ratio: 1 / 1;
@@ -96,8 +92,7 @@ h1{
     padding: 20px;
 }
 
-.output
-{
+.output {
     background-color: rgb(243, 243, 243);
     flex: 1;
     max-width: 100%;
@@ -110,19 +105,16 @@ h1{
     gap: 20px;
 }
 
-.operation
-{
+.operation {
     font-size: 1.5rem;
 }
 
-.result
-{
+.result {
     font-size: 5rem;
     height: 50%;
 }
 
-.buttonsContainer
-{
+.buttonsContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -133,21 +125,18 @@ h1{
     gap: 20px;
 }
 
-.buttonsContainer div:nth-child(19)
-{
+.buttonsContainer div:nth-child(19) {
     grid-column: span 2;
     background-color: rgb(219, 175, 94);
     color: var(--main-colour);
 }
 
-.buttonsContainer .button:nth-child(1)
-{
+.buttonsContainer .button:nth-child(1) {
     background-color: var(--bg-colour);
     color: var(--main-colour);
 }
 
-.button
-{
+.button {
     width: 100%;
     height: 100%;
     display: flex;
@@ -160,15 +149,13 @@ h1{
     transition: filter .5s;
 }
 
-.button:hover
-{
+.button:hover {
     cursor: pointer;
     filter: brightness(1.1);
 }
 
-.button:active
-{
+.button:active {
     box-shadow: none;
     position: relative;
-    transform: translate(5px,5px);
+    transform: translate(5px, 5px);
 }

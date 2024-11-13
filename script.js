@@ -17,7 +17,8 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
             switch (event.target.getAttribute(`value`)) {
                 case `=`:
                     clearDisplay();
-                    updateDisplay(`result`, parseExpression(operation));
+                    operation = parseExpression(operation);
+                    updateDisplay(`result`, operation.join(` `));
                     break;
 
                 case `AC`:
@@ -47,37 +48,9 @@ const clearDisplay = function () {
     output_result.textContent = ``;
 }
 
-const add = function (num_1, num_2) {
-    console.log(`add(${num_1}, ${num_2})`);
-
-    return num_1 + num_2;
-}
-
-const subtract = function (num_1, num_2) {
-    console.log(`subtract(${num_1}, ${num_2})`);
-
-    return num_1 - num_2;
-}
-
-const divide = function (num_1, num_2) {
-    console.log(`divide(${num_1}, ${num_2})`);
-
-    return num_1 / num_2;
-}
-
-const multiply = function (num_1, num_2) {
-    console.log(`multiply(${num_1}, ${num_2})`);
-
-    return num_1 * num_2;
-}
-
 const parseExpression = function (expression) {
     let operation_tmp = [``];
     let currentActiveVar = 0;
-
-    let num_1,
-        num_2,
-        operator;
 
     expression.forEach(element => {
         if (typeof element === `number`) {
@@ -93,26 +66,7 @@ const parseExpression = function (expression) {
         }
     })
 
-    console.log(operation_tmp);
-
-    for(let x = 0; x < operation_tmp.length; x++)
-    {
-        if(typeof operation_tmp[x] === `number`)
-        {
-            if(num_1 != null)
-            {
-                num_2 = operation_tmp[x];
-            }else
-            {
-                num_1 = operation_tmp[x];
-            }
-        }else
-        {
-            operator = operation_tmp[x];
-        }
-    }
-
-    return calculate(operator, num_1, num_2);
+    return operation_tmp;
 }
 
 const calculate = function (operator, num_1, num_2) {
@@ -120,16 +74,16 @@ const calculate = function (operator, num_1, num_2) {
 
     switch (operator) {
         case `+`:
-            return add(num_1, num_2);
+            return num_1 + num_2;
             break;
         case `-`:
-            return subtract(num_1, num_2);
+            return num_1 - num_2;
             break;
         case `/`:
-            return divide(num_1, num_2);
+            return num_1 / num_2;
             break;
         case `*`:
-            return multiply(num_1, num_2);
+            return num_1 * num_2;
             break;
         default:
             break;
