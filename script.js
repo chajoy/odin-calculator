@@ -1,11 +1,10 @@
 const output_operation = document.querySelector(`#operation`);
 const output_result = document.querySelector(`#result`);
-const operators = [`+`, `-`, `*`, `/`, `%`];
+const operators = [`/`, `*`, `%`, `+`, `-`];
 let operation = [];
 
 // functionality for buttons
 document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) => {
-    console.log(`buttonsContainer.click(${event.target.getAttribute(`value`)})`);
 
     if (event.target.classList.contains(`button`)) {
         if (!event.target.classList.contains(`function`)) {
@@ -18,11 +17,10 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                 case `=`:
                     clearDisplay();
                     operation = parseExpression(operation);
-                    updateDisplay(`result`, operation.join(` `));
+                    updateDisplay(`result`, operate(operation));
                     break;
 
                 case `AC`:
-                    console.log(`clearing operation`);
                     operation = [];
                     clearDisplay();
                     break;
@@ -32,7 +30,6 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
 })
 
 const updateDisplay = function (container, toDisplay = `null`) {
-    console.log(`updateDisplay(${container}, ${toDisplay})`);
 
     if (container === `operation`) {
         output_operation.textContent = toDisplay;
@@ -42,12 +39,25 @@ const updateDisplay = function (container, toDisplay = `null`) {
 }
 
 const clearDisplay = function () {
-    console.log(`clearDisplay()`);
 
     output_operation.textContent = ``;
     output_result.textContent = ``;
 }
 
+const operate = function (operation) {
+    for (let x = 0; x < operators.length; x++) {
+        while (operation.includes(operators[x])) {
+            let operatorIndex = operation.indexOf(operators[x]);
+            let num_1 = operation[operatorIndex - 1];
+            let operator = operators[x];
+            let num_2 = operation[operatorIndex + 1];
+            operation.splice(operatorIndex - 1, 3, calculate(operator, num_1, num_2));
+        }
+    }
+    return operation;
+}
+
+// concatenates separate numerals into single values
 const parseExpression = function (expression) {
     let operation_tmp = [``];
     let currentActiveVar = 0;
@@ -70,8 +80,6 @@ const parseExpression = function (expression) {
 }
 
 const calculate = function (operator, num_1, num_2) {
-    console.log(`calculate(${operator}, ${num_1}, ${num_2})`);
-
     switch (operator) {
         case `+`:
             return num_1 + num_2;
