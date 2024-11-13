@@ -79,17 +79,15 @@ const parseExpression = function (expression) {
     let currentActiveVar = 0;
 
     expression.forEach(element => {
-        if (typeof element === `number`) {
-            if (isNaN(operation_tmp[currentActiveVar])) {
-                currentActiveVar++;
-                operation_tmp[currentActiveVar] = ``;
-            }
-            operation_tmp[currentActiveVar] += String(element);
-            operation_tmp[currentActiveVar] = +operation_tmp[currentActiveVar];
-        } else {
+        if (operators.includes(element) || operators.includes(operation_tmp[currentActiveVar])) {
             currentActiveVar++;
-            operation_tmp[currentActiveVar] = element;
+            operation_tmp[currentActiveVar] = ``;
         }
+        operation_tmp[currentActiveVar] += String(element);
+    })
+
+    operation_tmp = operation_tmp.map(element => {
+        return isNaN(element) ? element : +element;
     })
 
     return operation_tmp;
