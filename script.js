@@ -107,6 +107,9 @@ const calculate = function (operator, num_1, num_2) {
         case `*`:
             return num_1 * num_2;
             break;
+        case `%`:
+            return num_1 % num_2;
+            break;
         default:
             break;
     }
