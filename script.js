@@ -23,13 +23,13 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                 case `=`:
                     clearDisplay();
                     operation = operation == `` ? operation : parseExpression(operation);
-                    updateDisplay(`result`, operate(operation));
+                    updateDisplay(`result`, operate(operation) || `0`);
                     checkValueLength();
                     break;
 
                 case `AC`:
                     operation = [];
-                    clearDisplay(`all`);
+                    clearDisplay();
                     break;
 
                 case `C`:
@@ -49,8 +49,7 @@ const updateDisplay = function (container, toDisplay = null) {
     }
 }
 
-const clearDisplay = function (container = null) {
-
+const clearDisplay = function (container = `all`) {
     if (container === `operation`) {
         output_operation.textContent = ``;
     } else if (container === `result`) {
