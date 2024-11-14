@@ -31,9 +31,8 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                     break;
 
                 case `C`:
-                    operation = [];
                     clearDisplay(`operation`);
-                    operation = [Number(output_result.textContent)];
+                    operation = output_result.textContent === `` ? [] : [output_result.textContent];
             }
         }
     }
