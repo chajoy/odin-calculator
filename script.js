@@ -54,10 +54,10 @@ const clearDisplay = function (container = null) {
     if (container === `operation`) {
         output_operation.textContent = ``;
     } else if (container === `result`) {
-        output_result.textContent = ``;
+        output_result.textContent = `0`;
     } else if (container === `all`) {
         output_operation.textContent = ``;
-        output_result.textContent = ``;
+        output_result.textContent = `0`;
     }
 }
 
