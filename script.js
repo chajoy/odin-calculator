@@ -4,6 +4,28 @@ const container = document.querySelector(`#container`);
 const operators = [`/`, `*`, `%`, `+`, `-`];
 let operation = [];
 
+const parseInput = function (e) {
+    if (e.key >= 0 && e.key <= 9 ||
+        e.key === `+` ||
+        e.key === `-` ||
+        e.key === `*` ||
+        e.key === `/` ||
+        e.key === `%`) {
+        operation.push(e.key);
+        updateDisplay(`operation`, operation.join(``));
+    } else if (e.key === `=` || e.key === `Enter`) {
+        evaluate();
+    } else if (e.key === `Backspace`) {
+        clearDisplay(`operation`);
+        operation = output_result.textContent === `` ? [] : [output_result.textContent];
+    } else if (e.key === `Escape`) {
+        operation = [];
+        clearDisplay();
+    }
+}
+
+window.addEventListener(`keydown`, parseInput);
+
 // functionality for buttons
 document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) => {
 
@@ -21,10 +43,7 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
         } else {
             switch (event.target.getAttribute(`value`)) {
                 case `=`:
-                    clearDisplay();
-                    operation = operation == `` ? operation : parseExpression(operation);
-                    updateDisplay(`result`, operate(operation) || `0`);
-                    checkValueLength();
+                    evaluate();
                     break;
 
                 case `AC`:
@@ -47,6 +66,13 @@ const updateDisplay = function (container, toDisplay = null) {
     } else if (container === `result`) {
         output_result.textContent = toDisplay;
     }
+}
+
+const evaluate = function () {
+    clearDisplay();
+    operation = operation == `` ? operation : parseExpression(operation);
+    updateDisplay(`result`, operate(operation) || `0`);
+    checkValueLength();
 }
 
 const clearDisplay = function (container = `all`) {
