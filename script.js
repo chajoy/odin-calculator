@@ -21,7 +21,7 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
             switch (event.target.getAttribute(`value`)) {
                 case `=`:
                     clearDisplay();
-                    operation = parseExpression(operation);
+                    operation = operation == `` ? operation : parseExpression(operation);
                     updateDisplay(`result`, operate(operation));
                     break;
 

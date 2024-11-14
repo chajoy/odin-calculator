@@ -65,20 +65,11 @@ h6 {
     text-wrap: balance;
 }
 
-h1 {
-    font-size: 3rem;
-}
-
 .container {
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-.title {
-    position: relative;
-    transform: translateY(15px) translateX(10px);
-    color: var(--main-colour);
+    min-height: 400px;
 }
 
 .calculator {
@@ -95,6 +86,7 @@ h1 {
 
 .output {
     background-color: rgb(243, 243, 243);
+    color: var(--bg-colour);
     flex: 1;
     max-width: 100%;
     display: flex;
@@ -105,11 +97,11 @@ h1 {
 }
 
 .operation {
-    font-size: 1.5rem;
+    font-size: max(1rem, 3vh);
 }
 
 .result {
-    font-size: 5rem;
+    font-size: max(2rem, 8vh);
     height: 50%;
 }
 
@@ -142,7 +134,8 @@ h1 {
     align-items: center;
     background-color: var(--button-colour);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.384);
-    font-size: 2rem;
+    font-size: max(0.8rem, 3vh);
+    font-weight: 300;
     transition: filter .5s;
     z-index: 1;
 }
@@ -154,6 +147,12 @@ h1 {
 
 .button:active {
     box-shadow: none;
-    position: relative;
     filter: brightness(0.7);
+}
+
+footer p {
+    margin: 10px 0;
+    font-size: max(0.8rem, 2vh);
+    color: var(--main-colour);
+    text-align: right;
 }
