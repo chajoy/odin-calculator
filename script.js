@@ -1,5 +1,6 @@
 const output_operation = document.querySelector(`#operation`);
 const output_result = document.querySelector(`#result`);
+const container = document.querySelector(`#container`);
 const operators = [`/`, `*`, `%`, `+`, `-`];
 let operation = [];
 
@@ -23,6 +24,7 @@ document.querySelector(`#buttonsContainer`).addEventListener(`click`, (event) =>
                     clearDisplay();
                     operation = operation == `` ? operation : parseExpression(operation);
                     updateDisplay(`result`, operate(operation));
+                    checkValueLength();
                     break;
 
                 case `AC`:
@@ -59,6 +61,13 @@ const clearDisplay = function (container = null) {
     }
 }
 
+const checkValueLength = function () {
+    if (output_result.scrollWidth > container.scrollWidth - 25) {
+        output_result.textContent = Number(output_result.textContent).toExponential(2);
+    }
+
+}
+
 const operate = function (operation) {
     for (let x = 0; x < operators.length; x++) {
         while (operation.includes(operators[x])) {
@@ -69,6 +78,7 @@ const operate = function (operation) {
             operation.splice(operatorIndex - 1, 3, calculate(operator, num_1, num_2));
         }
     }
+
     return isNaN(operation) ? `Error: NaN` : operation.join(` `);
 }
 
